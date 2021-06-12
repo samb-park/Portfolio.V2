@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Portfolio</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark mb-3 fixed-top" style="background-color: rgba(0,0,0,0.5);">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">S<span class="text_custom">.</span>PARK</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link text-light my-1" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link text-light my-1" href="#about">About</a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link text-light my-1" href="#resume">Resume</a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link text-light my-1" href="#work">Work</a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link text-light my-1" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-md mb-5">
+        <main role="main" class="pb-5">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer text-muted pt-3">
+        <div class="container">
+            <div class="text-center">
+                <a href="#"><i class="fab fa-linkedin-in text-light mx-3" style="font-size:1.5rem;"></i></a>
+                <a href="#"><i class="fab fa-github text-light mx-3" style="font-size:1.5rem;"></i></a>
+                <a href="#"><i class="far fa-envelope text-light mx-3" style="font-size:1.5rem;"></i></a>
+
+                <p class="m-0" style="font-size:0.6rem;">&copy; Copyrigth 2021. All rights reserved. Powered by Sangbong Park</p>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

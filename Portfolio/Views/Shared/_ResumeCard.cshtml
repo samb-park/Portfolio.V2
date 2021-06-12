@@ -1,0 +1,23 @@
+﻿@model Portfolio.Models.Resume
+
+<div class="col-lg-6 p-2 resume_item">
+    <div class="card" style="background-color:#333;">
+        <div class="card-body">
+
+            @if (Model.End > DateTime.Today)
+            {
+                <p class="card-subtitle text-light">@Model.Start.ToString("MMM yyyy") - Present </p> 
+            }
+            else
+            {
+                <p class="card-subtitle text-light">@Model.Start.ToString("MMM yyyy") - @Model.End.ToString("MMM yyyy") </p>            
+            }
+
+
+            <p class="card-title text_custom">@Model.Title</p>
+            <p class="card-text font-weight-lighter">@Model.ShortDescription</p>
+            <p class="card-text font-weight-lighter">@Model.Location</p>
+            <p class="card-text font-weight-lighter" style="display:none;">@Html.Raw(Model.Description.Replace("\r\n", "<br />"))</p>
+        </div>
+    </div>
+</div>

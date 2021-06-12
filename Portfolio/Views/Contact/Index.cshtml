@@ -1,0 +1,47 @@
+@model Portfolio.Models.Contact
+
+<div class="container p-5">
+    <div class="row">
+        <h2 class="text-light w-100 text-center mb-5">C<span class="text_custom">o</span>ntact</h2>
+        <div class="col-md-7 py-3 p-3 pr-5">
+            <h4 class="text-light font-weight-lighter mb-4">Get In Touch</h4>
+            <form id="contact_form" asp-controller="Contact" asp-action="Index" asp-route-contact="@Model">
+                <div class="form-group">
+                    <input asp-for="@Model.Name" type="text" class="form-control text-light contact-input" placeholder="Your Name" />
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="@Model.Email" type="text" class="form-control text-light  contact-input" placeholder="Your Email" />
+                    <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="@Model.Phone" type="text" class="form-control text-light  contact-input" placeholder="Your Phone" />
+                    <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <textarea asp-for="@Model.Message" rows="10" class="form-control text-light  contact-input" placeholder="Please leave your Message"></textarea>
+                    <span asp-validation-for="@Model.Message" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline-light px-5 text_custom rounded-pill" >Send</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4 p-3">
+            <h4 class="text-light font-weight-lighter mb-4">Contact Details</h4>
+            <h6 class="contact-detail-title text_custom font-weight-light mb-2"><i class="fas fa-envelope"></i> Email</h6>
+            <p class="contact-detail-content text-light font-weight-light">sangbong.park@outlook.com</p>
+            <h6 class="contact-detail-title text_custom font-weight-light mb-2"><i class="fab fa-linkedin"></i> Linkedin</h6>
+            <p class="contact-detail-content text-light font-weight-light">
+                www.linkedin.com/in/sangbong-park/
+            </p>
+            <h6 class="contact-detail-title text_custom font-weight-light mb-2"><i class="fab fa-github"></i> Github</h6>
+            <p class="contact-detail-content text-light font-weight-light">
+                github.com/sangbongpark
+            </p>
+        </div>
+
+
+    </div>
+
+</div>

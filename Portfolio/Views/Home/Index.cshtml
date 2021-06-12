@@ -1,0 +1,129 @@
+﻿@model Portfolio.Models.ViewModel.HomeViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<section id="home">
+    <div class="d-flex align-items-center justify-content-center">
+        <p id="home_content" class="text-center" style="font-size:2rem;">
+            This is
+            <br />
+            <sapn id="home_content_name" class="font-weight-light display-3">S<sapn class="text_custom font-weight-bold">.</sapn>Park'</sapn>
+            <br />
+            <span style="color:rgba(255,255,255,0.3);">Resume<span class="text_custom font-weight-bold">.</span></span>
+        </p>
+
+    </div>
+</section>
+
+<section id="about">
+    <div class="container p-5">
+        <div class="row">
+            <h2 class="text-light w-100 text-center mb-5">A<sapn class="text_custom">b</sapn>out <span class="font-weight-lighter">me</span></h2>
+            <div class="col-md-6 py-3 p-3 pr-5 text-center">
+                <img src="/images/background/me_color.jpeg" class="img-fluid rounded w-75">
+
+            </div>
+            <div class="col-md-5 p-3">
+                <h4 class="text-light font-weight-lighter mb-4">Summary</h4>
+                @{
+                    var description = "No Summary";
+
+
+
+                    foreach (var item in Model.ResumeList)
+                    {
+                        if (item.ResumeCategory.Name.Contains("SUMMARY"))
+                        {
+                            description = item.Description;
+                        }
+                    }
+                }
+                <p class="contact-detail-content text-light font-weight-light">@description</p>
+                <div class="form-group row p-3">
+                    <a class="btn btn-outline-light text_custom form-control col mr-5 rounded-pill">MY CV</a>
+                    <a class="btn btn-outline-light text_custom form-control col rounded-pill" href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="work">
+    <div class="container p-5">
+        <div class="text-center">
+            <h2 class="text-light w-100 text-center mb-5">W<span class="text_custom">o</span>rks</h2>
+        </div>
+        <div class="text-center">
+            <button class="filter-button btn btn-outline-light" data-filter="all">ALL</button>
+            @foreach (var obj in Model.WorkList)
+            {
+                <button class="btn btn-outline-secondary filter-button" data-filter="@obj.WorkCategory.Name.Replace(' ','_')">
+                    @obj.WorkCategory.Name
+                </button>
+            }
+        </div>
+        <br />
+        <div class="row">
+            @{ 
+                var workList = Model.WorkList.OrderByDescending(u => u.End).ToList();
+                foreach (var work in workList)
+                {
+                    <partial name="_WorkCard" model="work" />
+                }
+            }
+            
+        </div>
+    </div>
+</section>
+
+<section id="resume">
+    <div class="container p-5">
+        <div class="row d-flex justify-content-center">
+            <h2 class="text-light w-100 text-center mb-5"><span class="font-weight-lighter">My</span> R<span class="text_custom">e</span>sume</h2>
+            @{
+                var count = 0;
+                var resumeList = Model.ResumeList.OrderByDescending(u => u.End).ToList();
+                @foreach (var resume in resumeList)
+                {
+                    if (resume.ResumeCategory.Name.Contains("SUMMARY") || resume.ResumeCategory.Name.Contains("SKILLS"))
+                    {
+                        continue;
+                    }
+                    count++;
+                    <partial name="_ResumeCard" model="resume" />
+
+                }
+                if (count % 1 == 0)
+                {
+                    <div class="col-lg-6 p-2 text-light"></div>
+                }
+            }
+        </div>
+    </div>
+
+</section>
+
+<section id="contact">
+    <partial name="../Contact/Index" model="@Model.Contact" />
+</section>
+
+@section Scripts{
+    <script>$(document).ready(function () {
+
+            $(".filter-button").click(function () {
+
+                var value = $(this).attr('data-filter');
+                if (value == "all") {
+                    $('.filter').show('1000');
+                }
+                else {
+                    $(".filter").not('.' + value).hide('3000');
+                    $('.filter').filter('.' + value).show('3000');
+
+                }
+            });
+
+        });</script>
+}

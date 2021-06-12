@@ -1,0 +1,57 @@
+@model IEnumerable<Portfolio.Models.Resume>
+
+@{ ViewData["Title"] = "Index"; }
+
+<div class="container p-5">
+    <div class="row d-flex justify-content-center">
+        <h2 class="text-light w-100 text-center mb-5">Resume</h2>
+        @{
+            var count = 0;
+            @foreach (var item in Model)
+            {
+
+                count++;
+    <div class="col-lg-6 p-2 resume_item">
+        <div class="card" style="background-color:#333;">
+            <div class="card-body">
+                <p class="card-subtitle text-light">@item.Start.ToString("MMM yyyy") - @item.End.ToString("MMM yyyy") </p>
+
+                <p class="card-title text_custom">@item.Title</p>
+                <p class="card-text font-weight-lighter">@item.ShortDescription</p>
+                <p class="card-text font-weight-lighter">@item.Location</p>
+                <p class="card-text font-weight-lighter" style="display:none;">@item.Description</p>
+            </div>
+        </div>
+
+
+
+        @if(@ViewData["DebugMode"] as Boolean? == true)
+        {
+        <form asp-controller="Resume" asp-action="Delete" asp-route-id="@item.Id">
+            <a class="btn btn-outline-light mt-2 btn-sm" asp-controller="Resume" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+            @*<a class="btn btn-outline-light mt-2 btn-sm" asp-controller="Resume" asp-action="Details" asp-route-id="@item.Id">Details</a>*@
+            <input type="submit" value="Delete" class="btn btn-outline-light mt-2 btn-sm" />
+        </form>
+        }
+
+
+
+    </div>
+
+            }
+            if(count % 1 == 0)
+            {
+                <div class="col-lg-6 p-2 text-light"></div>
+            }
+
+        }
+    </div>
+
+    @if(@ViewData["DebugMode"] as Boolean? == true)
+    {
+        <a asp-controller="Resume" asp-action="Create" class="btn btn-outline-light my-3">Create New</a>
+    }
+
+
+</div>
+t
